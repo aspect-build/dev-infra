@@ -1,4 +1,5 @@
 load("//tools:defaults.bzl", "jasmine_node_test", "ts_library")
+load("//tools:toolchain_info.bzl", "TOOLCHAINS_NAMES", "TOOLCHAINS_VERSIONS")
 
 ts_library(
     name = "test_lib",
@@ -26,10 +27,17 @@ ts_library(
     ],
 )
 
-jasmine_node_test(
-    name = "test",
-    args = ["'$(GIT_BIN_PATH)'"],
-    shard_count = 6,
-    specs = [":test_lib"],
-    toolchains = ["//tools/git-toolchain:current_git_toolchain"],
-)
+[
+    jasmine_node_test(
+        name = "test_" + toolchain_name,
+        args = ["'$(GIT_BIN_PATH)'"],
+        shard_count = 6,
+        specs = [":test_lib"],
+        toolchain = toolchain,
+        toolchains = ["//tools/git-toolchain:current_git_toolchain"],
+    )
+    for toolchain_name, toolchain in zip(
+        TOOLCHAINS_NAMES,
+        TOOLCHAINS_VERSIONS,
+    )
+]

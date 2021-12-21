@@ -1,6 +1,6 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "generated_file_test", "js_library", "npm_package_bin")
 
-def generate_ts_proto_module(name, protofile, visibility = ["//visibility:public"]):
+def generate_ts_proto_module(name, protofile, test_file_name, toolchain, visibility = ["//visibility:public"]):
     """
     Generate a typescript module for decoding a proto binary file based on a provided .proto file.
     """
@@ -17,6 +17,8 @@ def generate_ts_proto_module(name, protofile, visibility = ["//visibility:public
         "@npm//minimist",
         "@npm//uglify-js",
     ]
+    test_js_file = test_file_name + "_pb.js"
+    test_ts_file = test_file_name + "_pb.d.ts"
     js_file = name + "_pb.js"
     d_ts_file = name + "_pb.d.ts"
 
@@ -52,23 +54,25 @@ def generate_ts_proto_module(name, protofile, visibility = ["//visibility:public
 
     generated_file_test(
         name = name + "_dts",
-        src = d_ts_file,
+        src = test_ts_file,
         testonly = True,
         generated = "generated_" + d_ts_file,
+        toolchain = toolchain,
     )
 
     generated_file_test(
         name = name + "_js",
         testonly = True,
-        src = js_file,
+        src = test_js_file,
         generated = "generated_" + js_file,
+        toolchain = toolchain,
     )
 
     js_library(
         name = name,
         srcs = [
-            d_ts_file,
-            js_file,
+            test_ts_file,
+            test_js_file,
         ],
         deps = [
             "@npm//protobufjs",

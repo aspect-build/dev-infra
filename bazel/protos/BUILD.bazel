@@ -1,6 +1,15 @@
 load("//tools:generate_ts_proto_module.bzl", "generate_ts_proto_module")
+load("//tools:toolchain_info.bzl", "TOOLCHAINS_NAMES", "TOOLCHAINS_VERSIONS")
 
-generate_ts_proto_module(
-    name = "test_status",
-    protofile = "@bazel_test_status_proto//file",
-)
+[
+    generate_ts_proto_module(
+        name = "test_status_" + toolchain_name,
+        protofile = "@bazel_test_status_proto//file",
+        test_file_name = "test_status",
+        toolchain = toolchain,
+    )
+    for toolchain_name, toolchain in zip(
+        TOOLCHAINS_NAMES,
+        TOOLCHAINS_VERSIONS,
+    )
+]

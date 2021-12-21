@@ -1,4 +1,5 @@
 load("//tools:defaults.bzl", "esbuild_checked_in", "jasmine_node_test", "ts_library")
+load("//tools:toolchain_info.bzl", "TOOLCHAINS_NAMES", "TOOLCHAINS_VERSIONS")
 
 package(default_visibility = ["//github-actions/feature-request:__subpackages__"])
 
@@ -28,12 +29,19 @@ ts_library(
     ],
 )
 
-jasmine_node_test(
-    name = "test",
-    specs = [
-        ":test_lib",
-    ],
-)
+[
+    jasmine_node_test(
+        name = "test_" + toolchain_name,
+        specs = [
+            ":test_lib",
+        ],
+        toolchain = toolchain,
+    )
+    for toolchain_name, toolchain in zip(
+        TOOLCHAINS_NAMES,
+        TOOLCHAINS_VERSIONS,
+    )
+]
 
 esbuild_checked_in(
     name = "main",

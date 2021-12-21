@@ -1,5 +1,6 @@
 load("//tools:defaults.bzl", "ts_library")
 load("//bazel/api-golden:index.bzl", "api_golden_test")
+load("//tools:toolchain_info.bzl", "TOOLCHAINS_NAMES", "TOOLCHAINS_VERSIONS")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -9,13 +10,20 @@ ts_library(
     deps = ["//bazel/api-golden/test/transitive_target"],
 )
 
-api_golden_test(
-    name = "test",
-    data = [
-        "test_golden.md",
-        ":test_lib",
-    ],
-    entry_point = "dev-infra/bazel/api-golden/test/test_fixture.d.ts",
-    golden = "dev-infra/bazel/api-golden/test/test_golden.md",
-    types = ["@npm//@types/node"],
-)
+[
+    api_golden_test(
+        name = "test_" + toolchain_name,
+        data = [
+            "test_golden.md",
+            ":test_lib",
+        ],
+        entry_point = "dev-infra/bazel/api-golden/test/test_fixture.d.ts",
+        golden = "dev-infra/bazel/api-golden/test/test_golden.md",
+        toolchain = toolchain,
+        types = ["@npm//@types/node"],
+    )
+    for toolchain_name, toolchain in zip(
+        TOOLCHAINS_NAMES,
+        TOOLCHAINS_VERSIONS,
+    )
+]

@@ -1,4 +1,5 @@
 load("//tools:defaults.bzl", "jasmine_node_test", "ts_library")
+load("//tools:toolchain_info.bzl", "TOOLCHAINS_NAMES", "TOOLCHAINS_VERSIONS")
 
 ts_library(
     name = "test_lib",
@@ -14,7 +15,14 @@ ts_library(
     ],
 )
 
-jasmine_node_test(
-    name = "test",
-    specs = [":test_lib"],
-)
+[
+    jasmine_node_test(
+        name = "test_" + toolchain_name,
+        specs = [":test_lib"],
+        toolchain = toolchain,
+    )
+    for toolchain_name, toolchain in zip(
+        TOOLCHAINS_NAMES,
+        TOOLCHAINS_VERSIONS,
+    )
+]

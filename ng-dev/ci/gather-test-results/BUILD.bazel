@@ -1,4 +1,14 @@
 load("//tools:defaults.bzl", "ts_library")
+load("//tools:toolchain_info.bzl", "TOOLCHAINS_NAMES")
+
+LIST = []
+
+[
+    LIST.append("//bazel/protos:test_status_" + toolchain_name)
+    for toolchain_name in TOOLCHAINS_NAMES
+]
+
+print(LIST)
 
 ts_library(
     name = "gather-test-results",
@@ -8,9 +18,8 @@ ts_library(
     ],
     visibility = ["//ng-dev:__subpackages__"],
     deps = [
-        "//bazel/protos:test_status",
         "//ng-dev/utils",
         "@npm//@types/node",
         "@npm//@types/yargs",
-    ],
+    ] + LIST,
 )

@@ -17,16 +17,46 @@ http_archive(
 )
 
 # Fetch rules_nodejs so we can install our npm dependencies
+# http_archive(
+#     name = "build_bazel_rules_nodejs",
+#     sha256 = "f7037c8e295fdc921f714962aee7c496110052511e2b14076bd8e2d46bc9819c",
+#     urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.4.5/rules_nodejs-4.4.5.tar.gz"],
+# )
+
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "778ed059ad37c3373c22adcb5c200cbbca72b370dd4de93379deb8325c0045cb",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.5.0/rules_nodejs-4.5.0.tar.gz"],
+    sha256 = "fadf9ca9cd799823287837cfbaddc83330b507c0c7d943dc8717a65c98b201f6",
+    urls = ["https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+b59e9f3c/build_bazel_rules_nodejs-snapshot_builds_5.x-snapshot.tar.gz"],
+)
+
+# this should just be the nodejs core package once it has an updated release
+http_archive(
+    name = "rules_nodejs",
+    sha256 = "fadf9ca9cd799823287837cfbaddc83330b507c0c7d943dc8717a65c98b201f6",
+    urls = ["https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+b59e9f3c/build_bazel_rules_nodejs-snapshot_builds_5.x-snapshot.tar.gz"],
 )
 
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
 
 node_repositories(
     node_version = "16.10.0",
+)
+
+load("@rules_nodejs//nodejs:repositories.bzl", "nodejs_register_toolchains")
+
+nodejs_register_toolchains(
+    name = "node12",
+    node_version = "12.22.8",
+)
+
+nodejs_register_toolchains(
+    name = "node14",
+    node_version = "14.18.2",
+)
+
+nodejs_register_toolchains(
+    name = "node16",
+    node_version = "16.13.1",
 )
 
 yarn_install(

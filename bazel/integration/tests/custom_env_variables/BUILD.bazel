@@ -1,22 +1,30 @@
 load("//bazel/integration:index.bzl", "integration_test")
+load("//tools:toolchain_info.bzl", "TOOLCHAINS_NAMES", "TOOLCHAINS_VERSIONS")
 
-integration_test(
-    name = "test",
-    srcs = [
-        "test.js",
-    ],
-    commands = [
-        "node ./test.js",
-    ],
-    data = ["@npm//:node_modules/semver/package.json"],
-    environment = {
-        "CUSTOM_VAR": "yes!",
-        "RESOLVED_BIN": "$(rootpath @npm//:node_modules/semver/package.json)",
-        "MANUAL_ROOT_PATH": "../npm/node_modules/semver/package.json",
-        "BAZELISK_HOME": "<TMP>",
-        "BAZELISK_HOME_2": "<TMP>",
-    },
-    tool_mappings = {
-        "@nodejs//:node_bin": "node",
-    },
-)
+[
+    integration_test(
+        name = "test_" + toolchain_name,
+        srcs = [
+            "test.js",
+        ],
+        commands = [
+            "node ./test.js",
+        ],
+        data = ["@npm//:node_modules/semver/package.json"],
+        environment = {
+            "CUSTOM_VAR": "yes!",
+            "RESOLVED_BIN": "$(rootpath @npm//:node_modules/semver/package.json)",
+            "MANUAL_ROOT_PATH": "../npm/node_modules/semver/package.json",
+            "BAZELISK_HOME": "<TMP>",
+            "BAZELISK_HOME_2": "<TMP>",
+        },
+        tool_mappings = {
+            "@nodejs//:node_bin": "node",
+        },
+        toolchain = toolchain,
+    )
+    for toolchain_name, toolchain in zip(
+        TOOLCHAINS_NAMES,
+        TOOLCHAINS_VERSIONS,
+    )
+]

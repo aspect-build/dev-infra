@@ -1,15 +1,23 @@
 load("//bazel/integration:index.bzl", "integration_test")
+load("//tools:toolchain_info.bzl", "TOOLCHAINS_NAMES", "TOOLCHAINS_VERSIONS")
 
 sh_binary(
     name = "external_script",
     srcs = ["external_script.sh"],
 )
 
-integration_test(
-    name = "test",
-    srcs = [],
-    commands = [
-        "$(rootpath :external_script) First Second",
-    ],
-    data = [":external_script"],
-)
+[
+    integration_test(
+        name = "test_" + toolchain_name,
+        srcs = [],
+        commands = [
+            "$(rootpath :external_script) First Second",
+        ],
+        data = [":external_script"],
+        toolchain = toolchain,
+    )
+    for toolchain_name, toolchain in zip(
+        TOOLCHAINS_NAMES,
+        TOOLCHAINS_VERSIONS,
+    )
+]
