@@ -1,6 +1,6 @@
-load("//bazel/benchmark/app_bundling:index.bzl", "app_bundle")
+load("@npm//@angular/dev-infra-private/bazel/benchmark/app_bundling:index.bzl", "app_bundle")
 load("@npm//@angular/bazel:index.bzl", "ng_module")
-load("@npm//@bazel/typescript:index.bzl", "ts_library")
+load("@npm//@bazel/concatjs:index.bzl", "ts_library")
 load("@npm//@bazel/concatjs:index.bzl", "concatjs_devserver")
 load(":benchmark_test.bzl", "benchmark_test")
 

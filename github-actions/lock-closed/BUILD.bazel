@@ -1,4 +1,4 @@
-load("//tools:defaults.bzl", "esbuild_checked_in")
+load("@npm//@angular/dev-infra-private/tools:defaults.bzl", "esbuild_checked_in")
 
 package(default_visibility = ["//github-actions/lock-closed:__subpackages__"])
 

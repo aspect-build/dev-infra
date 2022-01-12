@@ -1,4 +1,4 @@
-load("//bazel/integration:index.bzl", "integration_test")
+load("@npm//@angular/dev-infra-private/bazel/integration:index.bzl", "integration_test")
 
 # Note: Since the Bazel nested workspace is fully isolated we cannot simply wire up
 # the integration test with a `BUILD` file in the nested workspace. Instead we need

@@ -1,5 +1,5 @@
-load("@npm//@bazel/typescript:index.bzl", "ts_library")
-load("//tools:defaults.bzl", "jasmine_node_test")
+load("@npm//@bazel/concatjs:index.bzl", "ts_library")
+load("@npm//@angular/dev-infra-private/tools:defaults.bzl", "jasmine_node_test")
 
 ts_library(
     name = "bootstrap",

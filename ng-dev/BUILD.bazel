@@ -1,4 +1,4 @@
-load("//tools:defaults.bzl", "esbuild", "ts_library")
+load("@npm//@angular/dev-infra-private/tools:defaults.bzl", "esbuild", "ts_library")
 
 NG_DEV_EXTERNALS = [
     # `ts-node` is optional for users who write their configurations in TypeScript.

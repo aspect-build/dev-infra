@@ -1,4 +1,4 @@
-load("//tools:defaults.bzl", "ts_library")
+load("@npm//@angular/dev-infra-private/tools:defaults.bzl", "ts_library")
 
 package(default_visibility = ["//github-actions/slash-commands:__subpackages__"])
 

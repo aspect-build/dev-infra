@@ -1,4 +1,4 @@
-load("//tools:defaults.bzl", "jasmine_node_test", "ts_library")
+load("@npm//@angular/dev-infra-private/tools:defaults.bzl", "jasmine_node_test", "ts_library")
 
 ts_library(
     name = "commit-message",

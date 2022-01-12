@@ -1,5 +1,5 @@
-load("//tools:defaults.bzl", "ts_library")
-load("//bazel/api-golden:index.bzl", "api_golden_test")
+load("@npm//@angular/dev-infra-private/tools:defaults.bzl", "ts_library")
+load("@npm//@angular/dev-infra-private/bazel/api-golden:index.bzl", "api_golden_test")
 
 package(default_visibility = ["//visibility:public"])
 

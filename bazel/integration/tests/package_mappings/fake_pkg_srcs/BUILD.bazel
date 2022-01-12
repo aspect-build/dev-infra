@@ -1,5 +1,5 @@
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
-load("//tools:defaults.bzl", "pkg_npm")
+load("@npm//@angular/dev-infra-private/tools:defaults.bzl", "pkg_npm")
 
 pkg_npm(
     name = "npm_package",

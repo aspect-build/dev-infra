@@ -1,4 +1,4 @@
-load("//bazel/integration:index.bzl", "integration_test")
+load("@npm//@angular/dev-infra-private/bazel/integration:index.bzl", "integration_test")
 
 sh_binary(
     name = "external_script",

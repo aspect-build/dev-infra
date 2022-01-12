@@ -1178,55 +1178,48 @@
   resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-4.2.4.tgz#48d4da5638ef0e0a650dda28beaa07d9c8124520"
   integrity sha512-PwzTnPqD3W0fjdXY2qwnwh+BPeKAYsfOr4rPwH6u5j9MPHCOa9YRI7Qj8ZwmHC1hhORBYJoTQt589/mXYwfX+g==
 
-"@bazel/concatjs@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@bazel/concatjs/-/concatjs-4.6.0.tgz#7ed6ea8e1065057544fba351ca22bc2143d8a3a9"
-  integrity sha512-KtPpQxN/JcRHM8Miof8kDpgHczPycDlOl6mggKdbhMppBh64FKIIyNAKnngKswaFU+2WJiJs17YwDEJBB+Yqrg==
+"@bazel/concatjs@https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_concatjs-snapshot_builds_5.x-snapshot.tar.gz":
+  version "4.4.0-138-g6cf193b"
+  resolved "https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_concatjs-snapshot_builds_5.x-snapshot.tar.gz#f338aa488bbcbb630d7b4476d5769d2c2c6fb5db"
   dependencies:
     protobufjs "6.8.8"
     source-map-support "0.5.9"
     tsutils "3.21.0"
 
-"@bazel/esbuild@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@bazel/esbuild/-/esbuild-4.6.0.tgz#68bf9506c104ed4076a0227c4066e3f5df847ee3"
-  integrity sha512-pu4wSBNokYKLisHlXdHxu3UX19vFL4wNQJ45cyekfiWF2szWjWR8x/ZP15a49ChmvP6aelwrURahuhhgzfluOQ==
+"@bazel/esbuild@https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_esbuild-snapshot_builds_5.x-snapshot.tar.gz":
+  version "4.4.0-138-g6cf193b"
+  resolved "https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_esbuild-snapshot_builds_5.x-snapshot.tar.gz#2cd21d5fae87db11752d7be8ef888ca523af5627"
 
-"@bazel/jasmine@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@bazel/jasmine/-/jasmine-4.6.0.tgz#017f5efe329200cc1dd1c599294e14f3faace05e"
-  integrity sha512-GE6duEIyNm7PUnG3ZU8SmFgfsmR7z5BHFPX4mWlNEb2KtvtIwYo77dacoc6t20AZgV6vU6dT4G0oK8AwJdj4uw==
+"@bazel/jasmine@https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_jasmine-snapshot_builds_5.x-snapshot.tar.gz":
+  version "4.4.0-138-g6cf193b"
+  resolved "https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_jasmine-snapshot_builds_5.x-snapshot.tar.gz#ad3a38f037a3344e1fe16cce2735c5e6f9c44a7b"
   dependencies:
     c8 "~7.5.0"
     jasmine-reporters "~2.5.0"
 
-"@bazel/protractor@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@bazel/protractor/-/protractor-4.6.0.tgz#03f52ef8426b8fda5a23d42cda51a7c866d26d31"
-  integrity sha512-bBDbg3cP07PNDIt7QhG9aS3NlImbRnV7+9Udnbs9jYBmUHCjnvUkgZZAoedeKl2+ae/Xo0ca/isiRP/rbnoOLw==
+"@bazel/protractor@https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_protractor-snapshot_builds_5.x-snapshot.tar.gz":
+  version "4.4.0-138-g6cf193b"
+  resolved "https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_protractor-snapshot_builds_5.x-snapshot.tar.gz#959e40cd6147a0ef065794632a51eeef57b639db"
 
-"@bazel/runfiles@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@bazel/runfiles/-/runfiles-4.6.0.tgz#e6b7620b61e65d2f85ed823bda1529838a54af0b"
-  integrity sha512-Zl3Y+BrsrYaEKvRQCmhqSAdVcyjzBrdCxgpzi5/lj5X9H9RxXrO/oOlrQf6yJeWYRKmA8voyF7haES0Ao50uKQ==
+"@bazel/runfiles@https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_runfiles-snapshot_builds_5.x-snapshot.tar.gz":
+  version "4.4.0-138-g6cf193b"
+  resolved "https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_runfiles-snapshot_builds_5.x-snapshot.tar.gz#21b6ae9505fee93bdd174ecb189baadd0eb2b428"
 
-"@bazel/terser@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@bazel/terser/-/terser-4.6.0.tgz#03d41d6e7f79645154ef30eee15db00ea2c212ba"
-  integrity sha512-kgmegDNLgh8xADYDe7K06STeQ7utJL5eExy0gx+3f9JnPisWIgT9seXh4+ACc4CjTh1gQiQAHOYVCzXo0gp0fQ==
+"@bazel/terser@https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_terser-snapshot_builds_5.x-snapshot.tar.gz":
+  version "4.4.0-138-g6cf193b"
+  resolved "https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_terser-snapshot_builds_5.x-snapshot.tar.gz#1c430878cc9472f4598c32445b27cdeebb2bad14"
 
-"@bazel/typescript@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-4.6.0.tgz#cd1fe24214581af72622dbc9e025c9af21e2ebda"
-  integrity sha512-TLysIpJuMxZXAjZEFHkmLg71Ec3RRQTpbZsUtobBnIG5rRwbb2fgdFVfBx3Wvjg4oR+gj5Yj8yCRa4Ad+UhoYg==
+"@bazel/typescript@https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_typescript-snapshot_builds_5.x-snapshot.tar.gz":
+  version "4.4.0-138-g6cf193b"
+  resolved "https://github.com/aspect-build/rules_nodejs-builds/raw/4.4.0+6cf193b1/@bazel_typescript-snapshot_builds_5.x-snapshot.tar.gz#27558faabaf8bc9e75a108e88123fb5acb0be3ab"
   dependencies:
-    "@bazel/worker" "4.6.0"
+    "@bazel/worker" "4.4.0-138-g6cf193b"
     protobufjs "6.8.8"
     semver "5.6.0"
     source-map-support "0.5.9"
     tsutils "3.21.0"
 
-"@bazel/worker@4.6.0":
+"@bazel/worker@4.4.0-138-g6cf193b", "@bazel/worker@4.6.0":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@bazel/worker/-/worker-4.6.0.tgz#0a4332be547fcd94fa5da1dfa200a28a6bf5fc5b"
   integrity sha512-X6LIvvsMxhjIXp4G6zBYBYduDkphRC3Tj/6Es0+mJUWjWlK1pH0vRbONf9mDNCsABeoQ2iCcWVn5ABQV7wfwUw==
