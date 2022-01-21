@@ -19,9 +19,13 @@ http_archive(
 # Fetch rules_nodejs so we can install our npm dependencies
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "ddb78717b802f8dd5d4c01c340ecdc007c8ced5c1df7db421d0df3d642ea0580",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.6.0/rules_nodejs-4.6.0.tar.gz"],
+    sha256 = "6b951612ce13738516398a8057899394e2b7a779be91e1a68f75f25c0a938864",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.0.0/rules_nodejs-5.0.0.tar.gz"],
 )
+
+load("@build_bazel_rules_nodejs//:repositories.bzl", "build_bazel_rules_nodejs_dependencies")
+
+build_bazel_rules_nodejs_dependencies()
 
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
 
@@ -31,6 +35,7 @@ node_repositories(
 
 yarn_install(
     name = "npm",
+    exports_directories_only = False,
     package_json = "//:package.json",
     yarn_lock = "//:yarn.lock",
 )
@@ -49,7 +54,7 @@ browser_repositories()
 
 load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "esbuild_repositories")
 
-esbuild_repositories()
+esbuild_repositories(npm_repository = "npm")
 
 load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
 
