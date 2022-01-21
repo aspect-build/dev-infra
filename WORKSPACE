@@ -36,6 +36,7 @@ node_repositories(
 yarn_install(
     name = "npm",
     exports_directories_only = False,
+    data = ["//:patches/@angular+bazel+13.1.1.patch"],
     package_json = "//:package.json",
     yarn_lock = "//:yarn.lock",
 )

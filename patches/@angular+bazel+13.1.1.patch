@@ -1,0 +1,34 @@
+diff --git a/node_modules/@angular/bazel/src/external.bzl b/node_modules/@angular/bazel/src/external.bzl
+index d24d074..b8d65a5 100755
+--- a/node_modules/@angular/bazel/src/external.bzl
++++ b/node_modules/@angular/bazel/src/external.bzl
+@@ -20,12 +20,14 @@ load(
+     "//@bazel/typescript/internal:ts_config.bzl",
+     _TsConfigInfo = "TsConfigInfo",
+ )
++load(
++    "@rules_nodejs//:providers.bzl",
++    _js_module_info = "js_module_info")
+ load(
+     "@build_bazel_rules_nodejs//:providers.bzl",
+     _LinkablePackageInfo = "LinkablePackageInfo",
+     _NpmPackageInfo = "NpmPackageInfo",
+     _js_ecma_script_module_info = "js_ecma_script_module_info",
+-    _js_module_info = "js_module_info",
+     _js_named_module_info = "js_named_module_info",
+     _node_modules_aspect = "node_modules_aspect",
+ )
+diff --git a/node_modules/@angular/bazel/src/ng_package/ng_package.bzl b/node_modules/@angular/bazel/src/ng_package/ng_package.bzl
+index 9cad8df..7c9a97e 100755
+--- a/node_modules/@angular/bazel/src/ng_package/ng_package.bzl
++++ b/node_modules/@angular/bazel/src/ng_package/ng_package.bzl
+@@ -13,7 +13,8 @@ It packages your library following the Angular Package Format, see the
+ specification of this format at https://goo.gl/jB3GVv
+ """
+ 
+-load("@build_bazel_rules_nodejs//:providers.bzl", "DeclarationInfo", "JSEcmaScriptModuleInfo", "NodeContextInfo", "NpmPackageInfo", "node_modules_aspect")
++load("@rules_nodejs//:providers.bzl", "DeclarationInfo")
++load("@build_bazel_rules_nodejs//:providers.bzl", "JSEcmaScriptModuleInfo", "NodeContextInfo", "NpmPackageInfo", "node_modules_aspect")
+ load("@build_bazel_rules_nodejs//internal/linker:link_node_modules.bzl", "LinkerPackageMappingInfo")
+ load(
+     "@build_bazel_rules_nodejs//internal/pkg_npm:pkg_npm.bzl",
