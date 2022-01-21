@@ -9,6 +9,7 @@ ng_module(
     deps = [
         "@npm//@angular/core",
         "@npm//@angular/platform-browser",
+        # "@npm//@bazel/concatjs",
     ],
 )
 

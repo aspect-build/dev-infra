@@ -16,15 +16,36 @@ http_archive(
     ],
 )
 
-# Fetch rules_nodejs so we can install our npm dependencies
+# # Fetch rules_nodejs so we can install our npm dependencies
+# http_archive(
+#     name = "build_bazel_rules_nodejs",
+#     sha256 = "6b951612ce13738516398a8057899394e2b7a779be91e1a68f75f25c0a938864",
+#     urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.0.0/rules_nodejs-5.0.0.tar.gz"],
+# )
+
+# load("@build_bazel_rules_nodejs//:repositories.bzl", "build_bazel_rules_nodejs_dependencies")
+
+# build_bazel_rules_nodejs_dependencies()
+
 http_archive(
     name = "build_bazel_rules_nodejs",
-    patches = ["//:yarn-berry.patch"],
-    sha256 = "ddb78717b802f8dd5d4c01c340ecdc007c8ced5c1df7db421d0df3d642ea0580",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.6.0/rules_nodejs-4.6.0.tar.gz"],
+    sha256 = "a09edc4ba3931a856a5ac6836f248c302d55055d35d36e390a0549799c33145b",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.0.2/rules_nodejs-5.0.2.tar.gz"],
 )
 
+load("@build_bazel_rules_nodejs//:repositories.bzl", "build_bazel_rules_nodejs_dependencies")
+
+build_bazel_rules_nodejs_dependencies()
+
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
+load("@rules_nodejs//nodejs:repositories.bzl", "nodejs_register_toolchains")
+
+# The order matters because Bazel will provide the first registered toolchain when a rule asks Bazel to select it
+# This applies to the resolved_toolchain
+nodejs_register_toolchains(
+    name = "node16",
+    node_version = "16.10.0",
+)
 
 node_repositories(
     node_version = "16.10.0",
@@ -34,9 +55,12 @@ yarn_install(
     name = "npm",
     args = ["--immutable"],
     data = ["//:.yarnrc.yml"],
+    exports_directories_only = False,
     # Yarn Berry/v2+ expects `--immutable` instead of `--frozen-lockfile`.
     frozen_lockfile = False,
+    # data = ["//:patches/@angular+bazel+13.1.1.patch"],
     package_json = "//:package.json",
+    symlink_node_modules = False,
     yarn_lock = "//:yarn.lock",
 )
 
@@ -54,7 +78,7 @@ browser_repositories()
 
 load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "esbuild_repositories")
 
-esbuild_repositories()
+esbuild_repositories(npm_repository = "npm")
 
 load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
 
