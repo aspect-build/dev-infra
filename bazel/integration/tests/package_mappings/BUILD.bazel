@@ -3,6 +3,7 @@ load("//bazel/integration:index.bzl", "integration_test")
 integration_test(
     name = "test",
     srcs = [
+        ".yarnrc.yml",
         "package.json",
         "test.mjs",
     ],
@@ -10,13 +11,14 @@ integration_test(
         # Note: We use a cache folder within the integration test as otherwise
         # the NPM package mapped archive would be cached in the system.
         # See: https://github.com/yarnpkg/yarn/issues/2165.
-        "yarn install --cache-folder .yarn_cache_folder/",
+        "yarn install",
         "node ./test.mjs",
     ],
     data = [
         # The Yarn files also need to be part of the integration test as runfiles
         # because the `yarn_bin` target is not a self-contained standalone binary.
-        "@yarn//:yarn_files",
+        # "//:.yarn/releases/yarn-3.1.1.cjs",
+        ".yarnrc.yml",
     ],
     npm_packages = {
         "//bazel/integration/tests/package_mappings/fake_pkg_srcs:archive": "fake_pkg",
@@ -27,7 +29,7 @@ integration_test(
     # },
     tool_mappings = select({
         "@bazel_tools//src/conditions:linux_x86_64": {
-            "@yarn//:yarn_bin": "yarn",
+            "//:.yarn/releases/yarn-3.1.1.cjs": "yarn",
             "@node16_linux_amd64//:node_bin": "node",
         },
     }),

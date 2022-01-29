@@ -14,7 +14,7 @@ integration_test(
         # The Yarn files also need to be part of the integration test as runfiles
         # because the `yarn_bin` target is not a self-contained standalone binary.
         # "@nodejs//:yarn_files",
-        "@yarn//:yarn_files",
+        "//:.yarn/releases/yarn-3.1.1.cjs",
     ],
     environment = {
         # Setup a HOME directory so that Bazelisk can work, both Linux/macOS and Windows variants
@@ -32,7 +32,7 @@ integration_test(
     # },
     tool_mappings = select({
         "@bazel_tools//src/conditions:linux_x86_64": {
-            "@yarn//:yarn_bin": "yarn",
+            "//:.yarn/releases/yarn-3.1.1.cjs": "yarn",
             "@node16_linux_amd64//:node_bin": "node",
         },
     }),

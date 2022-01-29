@@ -8,7 +8,10 @@ integration_test(
     commands = [
         "node ./test.js",
     ],
-    data = ["@npm//:node_modules/semver/package.json"],
+    data = [
+        "//:.yarn/releases/yarn-3.1.1.cjs",
+        "@npm//:node_modules/semver/package.json",
+    ],
     environment = {
         "CUSTOM_VAR": "yes!",
         "RESOLVED_BIN": "$(rootpath @npm//:node_modules/semver/package.json)",
@@ -21,7 +24,7 @@ integration_test(
     # },
     tool_mappings = select({
         "@bazel_tools//src/conditions:linux_x86_64": {
-            "@yarn//:yarn_bin": "yarn",
+            "//:.yarn/releases/yarn-3.1.1.cjs": "yarn",
             "@node16_linux_amd64//:node_bin": "node",
         },
     }),
